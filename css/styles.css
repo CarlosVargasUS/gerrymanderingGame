@@ -1,0 +1,169 @@
+/* new version */
+
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: #99badd;
+  align-items: center;
+  height: 6vh;
+  font-size: 2em;
+  color: white;
+}
+
+.header-one .header-tree{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+#map {
+  position: absolute;
+  width: 900px;
+  height: 550px;
+}
+
+h1,
+h2,
+h3 {
+  color: red;
+}
+
+h1 {
+  color: blue;
+}
+
+body {
+  background-color: #495867;
+}
+
+#site {
+  display: flex;
+  flex-direction: column;
+
+}
+
+/* hamburger menu */
+
+.menu-content {
+  font-family: 'Oswald', sans-serif;
+  padding: 0 0 0 50px;
+}
+
+.collapsible-menu {
+  background-color: rgb(255, 255, 255);
+  padding: 0px 30px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.collapsible-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.collapsible-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.collapsible-menu label {
+  font-family: 'Sedgwick Ave Display', cursive;
+  font-size: 56px;
+  display: block;
+  cursor: pointer;
+  background: url(menu.png) no-repeat left center;
+  padding: 10px 0 10px 50px;
+}
+
+input#menu {
+  display: none;
+}
+
+input:checked+label {
+  background-image: url(./img/close.png);
+
+  .menu-content {
+    max-height: 0;
+    overflow: hidden;
+    font-family: 'Oswald', sans-serif;
+    padding: 0 0 0 50px;
+  }
+
+  /* Toggle Effect */
+  input:checked~label {
+    background-image: url(close.png);
+  }
+
+  input:checked~.menu-content {
+    max-height: 100%;
+  }
+}
+
+/* end of hamburger menu */
+
+.burger {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.fa-bars {
+  font-size: 40px;
+  cursor: pointer;
+
+}
+
+.sec1 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #C18C5D;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 5%;
+}
+
+.sec2 {
+  display: flex;
+  justify-content: center;
+}
+
+.state {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.state {
+  background: #404040;
+  color: #fff;
+  display: block;
+  padding: 5px;
+  border-radius: 1px;
+}
+
+/* color scheme 
+      495867
+      C18C5D
+      CE796B
+      E7AD99
+      ECC8AF
+      */
+
+@media screen and (max-width: 800px) {
+  body {
+    background-color: lightgreen;
+  }
+
+  #site{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+}
