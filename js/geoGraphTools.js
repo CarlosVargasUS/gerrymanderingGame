@@ -77,10 +77,9 @@ class geoNode {
     // is representing in the graph, the id of the
     // congressional district this node belongs to,
     // and the vertex weight of this node.
-    constructor(vtdID, district, weight) {
+    constructor(vtdID, district) {
         this.vtdID = vtdID;
         this.district = district;
-        this.weight = weight;
     }
 
     addDestination(d, weight) {
@@ -123,35 +122,10 @@ function buildAdjacencies(graph, adjacencyMap) {
             }
         } else {
             try {
-                graph.addEdge(parseInt(a[0]), parseInt(a[1]), parseInt(a[2]));
+                graph.addEdge(parseInt(a[0]) - 1, parseInt(a[1]) - 1, parseInt(a[2]));
             } catch (err) {
                 continue;
             }
         }
     }
-}
-
-function buildMacroDistricts(geojson) {
-    let totalDistrictMap = {
-        "type": "FeatureCollection",
-        "features": []
-    };
-
-    let idToDist = {};
-    for (let i = 0 ; i <= 13 ; i++) {
-        idToDist[i] = [];
-    }
-
-    for (let feature in geojson.features) {
-        let featureList = geojson.features;
-        idToDist[featureList[feature].properties['district']].push(featureList[feature]);
-    }
-
-    for (let i = 0 ; i <= 13 ; i++) {
-        console.log("Starting Inside Loop");
-        let featureArray = idToDist[i];
-        totalDistrictMap.features[i] = turf.union.apply(this, featureArray);
-        totalDistrictMap.features[i].properties['color'] = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-    }
-    return totalDistrictMap;
 }
