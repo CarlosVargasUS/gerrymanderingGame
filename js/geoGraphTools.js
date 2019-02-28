@@ -129,3 +129,12 @@ function buildAdjacencies(graph, adjacencyMap) {
         }
     }
 }
+
+
+// Function that takes in a geograph object and
+// the integer of a given district and iterates over
+// each node in the set to find which nodes in the set
+// are on the border of the district.
+function findBorderOfDistrict(graph, dist) {
+    let f = borderWeight
+}

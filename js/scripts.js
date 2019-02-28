@@ -1,6 +1,14 @@
-L.mapbox.accessToken = 'pk.eyJ1IjoiY3N2MTciLCJhIjoiY2pwMDhvMnduMDUzajNrcnp2cGhvN2EwaiJ9.OIhZD-GOKgPn0qEI9wCz0A'; //Mapbox API key
-var map = L.mapbox.map('map', 'mapbox.emerald')
-    .setView([35.9132, -79.0558], 2);
+//L.mapbox.accessToken = 'pk.eyJ1IjoiY3N2MTciLCJhIjoiY2pwMDhvMnduMDUzajNrcnp2cGhvN2EwaiJ9.OIhZD-GOKgPn0qEI9wCz0A'; //Mapbox API key
+//var map = L.mapbox.map('map', 'mapbox.emerald')
+let map = L.map('map', {
+    center: [35.2, -79.9],
+    zoom: 7
+}).setView([35.2, -79.9], 7);
+
+map.addEventListener('click', function(e) {
+    console.log(e.latlng.lat + ", " + e.latlng.lng);
+});
+
 $(document).ready(function () {
     console.log('scripts loaded');
 
