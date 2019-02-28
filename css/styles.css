@@ -28,6 +28,7 @@
 
 .districtButton {
   border: none;
+  font-family: 'Oswald', sans-serif;
   color: white;
   padding: 16px 24px;
   flex-grow: 1;
