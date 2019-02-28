@@ -9,6 +9,14 @@
   height: 6vh;
   font-size: 2em;
   color: white;
+  margin-bottom: 10px
+}
+
+.bottomButtonContainer {
+  float: left;
+  display: flex;
+  margin-top: 510px;
+  width: 100%
 }
 
 .header-one .header-tree{
@@ -18,12 +26,22 @@
   justify-content: space-between;
 }
 
-
+.districtButton {
+  border: none;
+  color: white;
+  padding: 16px 24px;
+  flex-grow: 1;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
 
 #map {
   position: absolute;
-  width: 900px;
-  height: 550px;
+  width: 99%;
+  height: 500px;
 }
 
 h1,
