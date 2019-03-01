@@ -2,12 +2,9 @@
 //var map = L.mapbox.map('map', 'mapbox.emerald')
 let map = L.map('map', {
     center: [35.2, -79.9],
-    zoom: 7
+    zoom: 7,
+    maxBounds: L.latLngBounds([37.3657, -84.5432], [33.1513, -75.2927])
 }).setView([35.2, -79.9], 7);
-
-map.addEventListener('click', function(e) {
-    console.log(e.latlng.lat + ", " + e.latlng.lng);
-});
 
 $(document).ready(function () {
     console.log('scripts loaded');
@@ -83,7 +80,6 @@ function controlSetUp(states) {
         map.dragging.enable();
       });
 
-      console.log(states);
 
       // states.on("mouseup", function (e) {
       //   var layer = e.layer;
@@ -112,7 +108,6 @@ function controlSetUp(states) {
         //union of two polygons
         if (selected.length == 2) {
           var union = turf.union(selected[0], selected[1]);
-          console.log(union);
 
           L.geoJson(union.toGeoJSON()).addTo(map);
 
@@ -172,7 +167,6 @@ function initFiles(geojson, g) {
                 }
             }).addTo(map);
             controlSetUp(states);
-            console.log(states);
             return states;
         }
     })
