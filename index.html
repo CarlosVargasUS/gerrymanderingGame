@@ -6,7 +6,8 @@
   <link rel="stylesheet" href="css/styles.css" type="text/css" />
   <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
   <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
 
 
 
@@ -15,25 +16,27 @@
 
 <body>
   <header class="header">
-      <div class="header-one">
-          <i class="far fa-hand-point-left"></i>
-          <i class="fas fa-bars"></i>
-      </div>
-      <div>The Gerrymandering Game</div>
-      <div class="header-tree">
-          <i class="fas fa-chart-bar"></i>
-          <i class="fas fa-share-alt-square"></i>
-          <i class="far fa-bell"></i>
-          <i class="fas fa-question"></i>
-      </div>
+    <div class="header-one">
+      <i class="far fa-hand-point-left"></i>
+      <i class="fas fa-bars"></i>
+    </div>
+    <div>The Gerrymandering Game</div>
+    <div class="header-tree">
+      <i class="fas fa-chart-bar"></i>
+      <i class="fas fa-share-alt-square"></i>
+      <i class="far fa-bell"></i>
+      <i class="fas fa-question"></i>
+    </div>
   </header>
 
   </div>
 
-    <div class="sec2">
-      <div id='map'></div>
-      <div id='state' class='state'></div>
-    </div>
+  <div class="section2">
+    <!-- <div class="disguise">map desgiuse</div> -->
+    <div id='map'></div>
+     <div id='state' class='state'></div>
+    <div class="mapInfo">Hello</div>
+  </div>
 
   <div class="bottomButtonContainer">
     <button class="districtButton" id="1" style="background-color: #800000">1</button>
@@ -52,16 +55,16 @@
     <div class="color"></div>
   </div>
 
-    <!-- JQUERY -->
-    <script src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
+  <!-- JQUERY -->
+  <script src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
 
-    <!-- MAPBOX -->
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-pip/v0.0.2/leaflet-pip.js'></script>
+  <!-- MAPBOX -->
+  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-pip/v0.0.2/leaflet-pip.js'></script>
 
-    <!-- TURFJS -->
-    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-    <script src='js/geoGraphTools.js'></script>
-    <script src="js/scripts.js"></script>
-  </body>
+  <!-- TURFJS -->
+  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+  <script src='js/geoGraphTools.js'></script>
+  <script src="js/scripts.js"></script>
+</body>
 
 </html>
