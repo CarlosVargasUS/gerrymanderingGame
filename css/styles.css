@@ -1,6 +1,6 @@
-/* new version */
+/* header section */
 
-.header{
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -11,21 +11,47 @@
   color: white;
   margin-bottom: 10px
 }
-/* edit the marging top */
-.bottomButtonContainer {
-  float: left;
-  display: flex;
-  margin-top: 5%;
-  /* margin-top: 510px; */
-  width: 100%
-}
 
-.header-one .header-tree{
+/* the way the icons will display on the right of the screen */
+.header-one .header-tree {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
+
+/* section 2 */
+
+.section2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 500px;
+
+}
+
+#map {
+  /* position: absolute; */
+  width: 75%;
+  height: 500px;
+}
+
+.mapInfo {
+  width: 25%;
+  background-color: black;
+}
+
+
+
+/* buttons at the bottom */
+.bottomButtonContainer {
+  display: flex;
+  margin-top: 5%;
+  flex-wrap: wrap;
+  width: 100%
+}
+
 
 .districtButton {
   border: none;
@@ -38,66 +64,22 @@
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 5%;
+  margin: 1%;
 }
 
 
-.disguise{
+.disguise {
   width: 75%;
   background-color: white;
 }
 
-h1,
-h2,
-h3 {
-  color: red;
-}
-
-h1 {
-  color: blue;
-}
 
 body {
   background-color: #495867;
 }
 
-#site {
-  display: flex;
-  flex-direction: column;
 
-}
-
-/* hamburger menu */
-
-.menu-content {
-  font-family: 'Oswald', sans-serif;
-  padding: 0 0 0 50px;
-}
-
-.collapsible-menu {
-  background-color: rgb(255, 255, 255);
-  padding: 0px 30px;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
-}
-
-.collapsible-menu ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.collapsible-menu a {
-  display: block;
-  padding: 10px;
-  text-decoration: none;
-}
-
-.collapsible-menu label {
-  font-family: 'Sedgwick Ave Display', cursive;
-  font-size: 56px;
-  display: block;
-  cursor: pointer;
-  background: url(menu.png) no-repeat left center;
-  padding: 10px 0 10px 50px;
-}
 
 input#menu {
   display: none;
@@ -105,28 +87,6 @@ input#menu {
 
 input:checked+label {
   background-image: url(./img/close.png);
-
-  /* .menu-content {
-    max-height: 0;
-    overflow: hidden;
-    font-family: 'Oswald', sans-serif;
-    padding: 0 0 0 50px;
-  } */
-
-  /* Toggle Effect
-  input:checked~label {
-    background-image: url(close.png);
-  } */
-
-  /* input:checked~.menu-content {
-    max-height: 100%;
-  } */
-}
-/* end of hamburger menu */
-
-.burger {
-  display: flex;
-  justify-content: flex-start;
 }
 
 .fa-bars {
@@ -135,36 +95,6 @@ input:checked+label {
 
 }
 
-.sec1 {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #C18C5D;
-  margin-top: 5%;
-  margin-left: 15%;
-  margin-right: 15%;
-  margin-bottom: 5%;
-}
-
-.section2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  height: 500px;
-
-}
-
-.mapInfo{
-  width: 25%;
-  background-color: black;
-}
-
-#map {
-  /* position: absolute; */
-  width: 75%;
-  height: 500px;
-}
 
 .state {
   position: absolute;
@@ -194,7 +124,7 @@ input:checked+label {
     background-color: lightgreen;
   }
 
-  #site{
+  #site {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
