@@ -6,8 +6,7 @@
   justify-content: space-evenly;
   background-color: #99badd;
   align-items: center;
-  height: 6vh;
-  font-size: 2em;
+  height: 3em;
   color: white;
   margin-bottom: 10px
 }
@@ -20,6 +19,10 @@
   justify-content: space-between;
 }
 
+.title{
+  font-size: 2em
+}
+
 /* section 2 */
 
 .section2 {
@@ -27,19 +30,20 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  height: 500px;
+  height: 70vh;
 
 }
 
 #map {
   /* position: absolute; */
-  width: 75%;
-  height: 500px;
+  width: 85%;
+  height: 70vh;
 }
 
 .mapInfo {
-  width: 25%;
+  width: 15%;
   background-color: black;
+  /* margin-left: 1%; */
 }
 
 
@@ -47,7 +51,7 @@
 /* buttons at the bottom */
 .bottomButtonContainer {
   display: flex;
-  margin-top: 5%;
+  margin-top: 3%;
   flex-wrap: wrap;
   width: 100%
 }
@@ -120,14 +124,18 @@ input:checked+label {
       */
 
 @media screen and (max-width: 800px) {
-  body {
-    background-color: lightgreen;
+
+  .section2{
+    flex-direction: column;
   }
 
-  #site {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+  #map{
+    width: 100%;
+  }
+  
+  .mapInfo{
+    width: 100%;
+    height: 15vh;
   }
 
 }
