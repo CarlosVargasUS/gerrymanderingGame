@@ -1,5 +1,6 @@
 //L.mapbox.accessToken = 'pk.eyJ1IjoiY3N2MTciLCJhIjoiY2pwMDhvMnduMDUzajNrcnp2cGhvN2EwaiJ9.OIhZD-GOKgPn0qEI9wCz0A'; //Mapbox API key
 //var map = L.mapbox.map('map', 'mapbox.emerald')
+let selColor = "#FFFFFF";
 let map = L.map('map', {
     center: [35.2, -79.9],
     zoom: 7,
@@ -72,7 +73,7 @@ function controlSetUp(states) {
       states.addEventListener("mousemove", function (e) {
         var layer = e.layer;
         layer.setStyle({
-          'color': 'yellow'
+          'color': selColor
         });
       });
 
@@ -233,4 +234,8 @@ function refreshStyle(geojson) {
         }
         geojson.features[e]['color'] = color;
     }
+}
+
+function setColor(color) {
+    selColor = color;
 }
