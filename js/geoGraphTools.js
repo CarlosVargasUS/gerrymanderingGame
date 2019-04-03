@@ -8,7 +8,6 @@
     references to all nodes and edges within the graph as well as
     methods for adding, removing, and manipulating nodes.
     */
-    // TODO Logic for nodes collapsing into the macro-congressional districts
 class geoGraph {
 
     // geoGraph constructor initializes an empty graph.
@@ -40,15 +39,14 @@ class geoGraph {
 
     groupMacroDistricts() {
         let macroDistrictDictionary = {};
-        for (let i = 0 ; i <= 13 ; i++) {
-            macroDistrictDictionary[i] = [];
+        for (let i = 1 ; i <= 13 ; i++) {
+            macroDistrictDictionary[i] = new Array();
         }
         for (let n in this.nodes) {
             let node = this.nodes[n];
-            macroDistrictDictionary[node.district].push(node);
+            macroDistrictDictionary[parseInt(node.district)].push(node);
         }
-
-
+        return macroDistrictDictionary;
     }
 }
 
@@ -69,6 +67,7 @@ class geoNode {
     destinations = {};
     sources = {};
     border = false;
+    district = -1;
     // Class that defines the nodes that represent
     // a given VTD in a graph-representation of the
     // NC congressional districts.
@@ -101,6 +100,10 @@ class geoNode {
     setDistrict(d) {
         this.district = d;
     }
+
+    getDestMap() {
+        return this.destinations;
+    }
 }
 
 // This function takes in an existing graph and an
@@ -130,11 +133,94 @@ function buildAdjacencies(graph, adjacencyMap) {
     }
 }
 
+function assignDistricts(geojson, map) {
+    let lines = map.split("\n");
+    for (let i = 0; i < lines.length ; i++) {
+        let a = lines[i].split(/[ \t]+/);
+        geojson.features[a[0]].properties['DIST'] = '';
+        try {
+            geojson.features[a[0]].properties['DIST'] = a[1];
+            geojson.features[a[0]]['node'].setDistrict(a[1]);
+        } catch (err) {
+            continue;
+        }
+    }
+}
+
 
 // Function that takes in a geograph object and
 // the integer of a given district and iterates over
 // each node in the set to find which nodes in the set
 // are on the border of the district.
 function findBorderOfDistrict(graph, dist) {
-    let f = borderWeight
+    let nodes = graph.groupMacroDistricts()[dist];
+    let borderSet = [];
+    nodes.forEach(function(currNode) {
+        let nodeDests = currNode.destinations;
+        for (let d in nodeDests) {
+            if (parseInt(graph.nodes[d].district) !== dist || currNode.border === true) {
+                borderSet.push(currNode);
+            }
+        }
+    });
+
+    let returnSet = [...new Set(borderSet)];
+
+    return Array.from(returnSet);
+}
+
+function getDiscretePolsbyPopper(graph, district) {
+        let d = graph.groupMacroDistricts();
+        let key = district.toString();
+        return d[key].length / Math.pow(findBorderOfDistrict(graph, district).length, 2);
+}
+
+
+//Testing function for geoGraph.
+function testDist() {
+    let d = new geoGraph();
+
+    let nodeOne = new geoNode(1, 1);
+    let nodeTwo = new geoNode(2, 1);
+    let nodeThree = new geoNode(3, 1);
+    let nodeFour = new geoNode(4, 2);
+    let nodeFive = new geoNode(5, 3);
+    let nodeSix = new geoNode(6, 1);
+
+    d.addNode(nodeOne);
+    d.addNode(nodeTwo);
+    d.addNode(nodeThree);
+    d.addNode(nodeFour);
+    d.addNode(nodeFive);
+    d.addNode(nodeSix);
+
+    d.addEdge(2, 1, 1);
+    d.addEdge(2, 3, 1);
+    d.addEdge(1, 5, 1);
+    d.addEdge(3, 4, 1);
+    d.addEdge(6, 4, 1);
+
+    return getDiscretePolsbyPopper(d, 1);
+
+    //Should return array with nodeOne, nodeThree, and nodeSix in it.
+
+}
+
+
+function calculateReock(geojson, district) {
+    let dist = buildMacroMap(geojson)[district];
+
+}
+
+function buildMacroMap(geojson) {
+
+    let macroDistrictDictionary = {};
+    for (let i = 1 ; i <= 13 ; i++) {
+        macroDistrictDictionary[i] = new Array();
+    }
+    for (let key in geojson.features) {
+        let dist = geojson.features[key];
+        macroDistrictDictionary[parseInt(dist.properties['DIST'])].push(dist);
+    }
+    return macroDistrictDictionary;
 }

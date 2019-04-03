@@ -24,7 +24,7 @@ $(document).ready(function () {
         data: d, // the object that we are calling
         success: function (d) {
             let g = new geoGraph();
-            let states = initFiles(d, g)
+            let states = initFiles(d, g);
             //console.log(d);
             // states.on('mousedown', function (e) {
             //   var layer = e.layer;
@@ -32,7 +32,6 @@ $(document).ready(function () {
             //     'color': "aqua"
             //   });
             // });
-
         }
     });
 });
@@ -135,15 +134,18 @@ function controlSetUp(states) {
       });
     }
 
-function initGraph(graph) {
+function initGraph(graph, geojson) {
   let e;
   $.ajax({
       type: 'GET',
       url: 'js/NC_Edges_LengthsFormatted.txt',
       dataType: 'text',
+      async: false,
       data: e,
       success: function (e) {
         buildAdjacencies(graph, e);
+        console.log(getDiscretePolsbyPopper(graph, 1));
+
       }
   })
 }
@@ -160,8 +162,8 @@ function initFiles(geojson, g) {
             for (let id in geojson.features) {           // For-loop to initalize geograph with all nodes.
                 geojson.features[id]['node'] = g.addNode(new geoNode(id, geojson.features[id].properties['DIST']));
             }
-            refreshStyle(geojson);
-            initGraph(g);
+            assignStyle(geojson);
+            initGraph(g, geojson);
             let states = L.geoJson(geojson, {style: function (feature) {
                     return {color: feature.color};
                 }
@@ -172,21 +174,7 @@ function initFiles(geojson, g) {
     })
 }
 
-function assignDistricts(geojson, map) {
-    let lines = map.split("\n");
-    for (let i = 0; i < lines.length ; i++) {
-        let a = lines[i].split(/[ \t]+/);
-        geojson.features[a[0]].properties['DIST'] = '';
-        try {
-            geojson.features[a[0]].properties['DIST'] = a[1];
-        } catch (err) {
-            continue;
-        }
-    }
-}
-
-
-function refreshStyle(geojson) {
+function assignStyle(geojson) {
     for (let e in geojson.features) {
         let d = geojson.features[e].properties['DIST'];
         let color;
