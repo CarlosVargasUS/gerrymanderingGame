@@ -78,8 +78,6 @@ function controlSetUp(states) {
 
         layer.feature.properties['DIST'] = selDistrict;
         layer.feature['node'].setDistrict(selDistrict);
-        console.log(layer);
-        console.log(getDiscretePolsbyPopper(g, "2"));
       });
 
       $('.enableDrag').click(function () {
