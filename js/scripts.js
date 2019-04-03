@@ -1,6 +1,8 @@
 //L.mapbox.accessToken = 'pk.eyJ1IjoiY3N2MTciLCJhIjoiY2pwMDhvMnduMDUzajNrcnp2cGhvN2EwaiJ9.OIhZD-GOKgPn0qEI9wCz0A'; //Mapbox API key
 //var map = L.mapbox.map('map', 'mapbox.emerald')
 let selColor = "#FFFFFF";
+let selDistrict = "1";
+let g = new geoGraph();
 let map = L.map('map', {
     center: [35.2, -79.9],
     zoom: 7,
@@ -24,7 +26,6 @@ $(document).ready(function () {
         dataType: 'json',
         data: d, // the object that we are calling
         success: function (d) {
-            let g = new geoGraph();
             let states = initFiles(d, g);
             //console.log(d);
             // states.on('mousedown', function (e) {
@@ -74,6 +75,11 @@ function controlSetUp(states) {
         layer.setStyle({
           'color': selColor
         });
+
+        layer.feature.properties['DIST'] = selDistrict;
+        layer.feature['node'].setDistrict(selDistrict);
+        console.log(layer);
+        console.log(getDiscretePolsbyPopper(g, "2"));
       });
 
       $('.enableDrag').click(function () {
@@ -226,4 +232,8 @@ function assignStyle(geojson) {
 
 function setColor(color) {
     selColor = color;
+}
+
+function setDistrict(district) {
+    selDistrict = district;
 }
