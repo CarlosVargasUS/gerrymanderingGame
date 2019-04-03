@@ -19,7 +19,7 @@
   justify-content: space-between;
 }
 
-.title{
+.title, .title1{
   font-size: 2em;
   color:white;
   display: flex;
