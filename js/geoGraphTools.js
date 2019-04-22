@@ -209,6 +209,40 @@ function testDist() {
 
 function calculateReock(geojson, district) {
     let dist = buildMacroMap(geojson)[district];
+    let districtPolygon = turf.union.apply(this, dist);
+
+    let bbox = turf.bbox(districtPolygon);
+
+    let topRight = turf.point([bbox[2], bbox[3]]);
+    let bottomLeft = turf.point([bbox[0], bbox[1]]);
+
+    let r = turf.distance(topRight, bottomLeft) / 2;
+    let c = turf.circle(turf.center(districtPolygon), r);
+
+    return turf.area(districtPolygon) / turf.area(c);
+}
+
+function getCenterOfDist(geojson, district) {
+    let dist = buildMacroMap(geojson)[district];
+    let districtPolygon = turf.union.apply(this, dist);
+
+    return turf.center(districtPolygon);
+}
+
+function calculateLengthWidth(geojson, district) {
+    let dist = buildMacroMap(geojson)[district];
+    let districtPolygon = turf.union.apply(this, dist);
+
+    let bbox = turf.bbox(districtPolygon);
+
+    let topLeft = turf.point([bbox[0], bbox[3]]);
+    let topRight = turf.point([bbox[2], bbox[3]]);
+    let bottomLeft = turf.point([bbox[0], bbox[1]]);
+
+    let width = turf.distance(topLeft, topRight);
+    let height = turf.distance(topLeft, bottomLeft);
+
+    return (width > height) ? (height/width) : (width/height);
 
 }
 

@@ -235,3 +235,9 @@ function setColor(color) {
 function setDistrict(district) {
     selDistrict = district;
 }
+
+function getReock(subSet) {
+    let macroDist = turf.union(subSet[0], subSet[1]);
+    console.log(macroDist);
+    return turf.bbox(macroDist);
+}
