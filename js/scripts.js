@@ -179,6 +179,9 @@ function initFiles(geojson, g) {
     })
 }
 
+/*  Function to assign the proper initial colors
+    to each district included in the geojson
+ */
 function assignStyle(geojson) {
     for (let e in geojson.features) {
         let d = geojson.features[e].properties['DIST'];
@@ -228,16 +231,15 @@ function assignStyle(geojson) {
     }
 }
 
+
+/*  Functions to set the currently selected
+ *  district to be manipulated on the map.
+ *  Called by buttons of class 'districtButton'
+ *  in index.html */
 function setColor(color) {
     selColor = color;
 }
 
 function setDistrict(district) {
     selDistrict = district;
-}
-
-function getReock(subSet) {
-    let macroDist = turf.union(subSet[0], subSet[1]);
-    console.log(macroDist);
-    return turf.bbox(macroDist);
 }

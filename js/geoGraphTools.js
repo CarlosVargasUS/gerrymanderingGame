@@ -172,6 +172,9 @@ function findBorderOfDistrict(graph, dist) {
 function getDiscretePolsbyPopper(graph, district) {
         let d = graph.groupMacroDistricts();
         let key = district.toString();
+        if (d[key].length === 0 ) {
+            return "This district is completely empty.";
+        }
         return d[key].length / Math.pow(findBorderOfDistrict(graph, district).length, 2);
 }
 
@@ -209,6 +212,11 @@ function testDist() {
 
 function calculateReock(geojson, district) {
     let dist = buildMacroMap(geojson)[district];
+
+    if (dist.length === 0) {
+        return "This district is completely empty.";
+    }
+
     let districtPolygon = turf.union.apply(this, dist);
 
     let bbox = turf.bbox(districtPolygon);
@@ -231,6 +239,11 @@ function getCenterOfDist(geojson, district) {
 
 function calculateLengthWidth(geojson, district) {
     let dist = buildMacroMap(geojson)[district];
+
+    if (dist.length === 0) {
+        return "This district is completely empty.";
+    }
+
     let districtPolygon = turf.union.apply(this, dist);
 
     let bbox = turf.bbox(districtPolygon);
