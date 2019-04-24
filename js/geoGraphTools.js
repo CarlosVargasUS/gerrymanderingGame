@@ -63,14 +63,14 @@ class geoEdge {
     }
 }
 
+// Class that defines the nodes that represent
+// a given VTD in a graph-representation of the
+// NC congressional districts.
 class geoNode {
     destinations = {};
     sources = {};
     border = false;
     district = -1;
-    // Class that defines the nodes that represent
-    // a given VTD in a graph-representation of the
-    // NC congressional districts.
 
     // Constructor accepts the id of the VTD this node
     // is representing in the graph, the id of the
@@ -97,6 +97,7 @@ class geoNode {
         delete this.sources[s.vtdID];
     }
 
+    // Getters and Setters below.
     setDistrict(d) {
         this.district = d;
     }
@@ -169,6 +170,8 @@ function findBorderOfDistrict(graph, dist) {
     return Array.from(returnSet);
 }
 
+/* Function to get the discrete Polsby-Popper measurement
+ * of a given districts geoGraph representation. */
 function getDiscretePolsbyPopper(graph, district) {
         let d = graph.groupMacroDistricts();
         let key = district.toString();
@@ -179,7 +182,7 @@ function getDiscretePolsbyPopper(graph, district) {
 }
 
 
-//Testing function for geoGraph.
+//Testing function for different geoGraph methods.
 function testDist() {
     let d = new geoGraph();
 
@@ -205,11 +208,12 @@ function testDist() {
 
     return getDiscretePolsbyPopper(d, 1);
 
-    //Should return array with nodeOne, nodeThree, and nodeSix in it.
-
 }
 
-
+// Function to calculate the Reock Gerrymandering
+// measure of a given congressional district
+// Accepts a geojson object containing the proper
+// geometry and an integer representing the desired district.
 function calculateReock(geojson, district) {
     let dist = buildMacroMap(geojson)[district];
 
@@ -230,6 +234,9 @@ function calculateReock(geojson, district) {
     return turf.area(districtPolygon) / turf.area(c);
 }
 
+// Function to return the center of a congressional
+// district. Accepts a geojson object containing the proper
+// geometry and an integer representing the desired district.
 function getCenterOfDist(geojson, district) {
     let dist = buildMacroMap(geojson)[district];
     let districtPolygon = turf.union.apply(this, dist);
@@ -237,6 +244,10 @@ function getCenterOfDist(geojson, district) {
     return turf.center(districtPolygon);
 }
 
+// Function to calculate the LengthWidth Gerrymandering
+// measure of a given congressional district
+// Accepts a geojson object containing the proper
+// geometry and an integer representing the desired district.
 function calculateLengthWidth(geojson, district) {
     let dist = buildMacroMap(geojson)[district];
 
@@ -259,6 +270,11 @@ function calculateLengthWidth(geojson, district) {
 
 }
 
+
+// Helper function to return a javascript object
+// hashing the integer index of each congressional
+// district to an array holding all VTDs that are
+// a part of that congressional district.
 function buildMacroMap(geojson) {
 
     let macroDistrictDictionary = {};

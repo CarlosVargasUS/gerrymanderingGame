@@ -1,5 +1,7 @@
 //L.mapbox.accessToken = 'pk.eyJ1IjoiY3N2MTciLCJhIjoiY2pwMDhvMnduMDUzajNrcnp2cGhvN2EwaiJ9.OIhZD-GOKgPn0qEI9wCz0A'; //Mapbox API key
 //var map = L.mapbox.map('map', 'mapbox.emerald')
+
+// Initialization of variables that need to be accessible on the entire map.
 let selColor = "#FFFFFF";
 let selDistrict = "1";
 let g = new geoGraph();
@@ -37,7 +39,10 @@ $(document).ready(function () {
         }
     });
 });
-  //This button disables the drag function on the map when being
+
+// This function adds the necessary event listeners
+// to map objects, UI elements, etc. Accepts a fully
+// formed leaflet map object.
 function controlSetUp(states) {
       $('.disableDrag').click(function () {
         map.dragging.disable();
@@ -139,6 +144,9 @@ function controlSetUp(states) {
       });
     }
 
+    /*  Function to set up the initial state of our geoGraph object.
+        Takes in a geoGraph object (graph) and a geojson object (geojson).
+     */
 function initGraph(graph, geojson) {
   let e;
   $.ajax({
@@ -155,6 +163,10 @@ function initGraph(graph, geojson) {
   })
 }
 
+/* Function to set up the initial styling of the
+   leaflet map objects as well as initialize the
+   node adjacency map in the geoGraph object.
+ */
 function initFiles(geojson, g) {
     let e;
     $.ajax({
@@ -180,7 +192,8 @@ function initFiles(geojson, g) {
 }
 
 /*  Function to assign the proper initial colors
-    to each district included in the geojson
+    to each district included in the geojson.
+    Called on startup.
  */
 function assignStyle(geojson) {
     for (let e in geojson.features) {
