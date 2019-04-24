@@ -221,7 +221,13 @@ function calculateReock(geojson, district) {
         return "This district is completely empty.";
     }
 
-    let districtPolygon = turf.union.apply(this, dist);
+    let districtPolygon;
+    
+    if (dist.length > 1) {
+        districtPolygon = turf.union.apply(this, dist);
+    } else {
+        districtPolygon = dist[0];
+    }
 
     let bbox = turf.bbox(districtPolygon);
 
@@ -231,7 +237,9 @@ function calculateReock(geojson, district) {
     let r = turf.distance(topRight, bottomLeft) / 2;
     let c = turf.circle(turf.center(districtPolygon), r);
 
-    return turf.area(districtPolygon) / turf.area(c);
+    let reock = turf.area(districtPolygon) / turf.area(c);
+
+    return (reock > 1) ? 1 : reock;
 }
 
 // Function to return the center of a congressional
@@ -239,7 +247,18 @@ function calculateReock(geojson, district) {
 // geometry and an integer representing the desired district.
 function getCenterOfDist(geojson, district) {
     let dist = buildMacroMap(geojson)[district];
-    let districtPolygon = turf.union.apply(this, dist);
+
+    if (dist.length === 0) {
+        return "This district is empty!";
+    }
+
+    let districtPolygon;
+
+    if (dist.length > 1) {
+        districtPolygon = turf.union.apply(this, dist);
+    } else {
+        districtPolygon = dist[0];
+    }
 
     return turf.center(districtPolygon);
 }
@@ -255,7 +274,13 @@ function calculateLengthWidth(geojson, district) {
         return "This district is completely empty.";
     }
 
-    let districtPolygon = turf.union.apply(this, dist);
+    let districtPolygon;
+
+    if (dist.length > 1) {
+        districtPolygon = turf.union.apply(this, dist);
+    } else {
+        districtPolygon = dist[0];
+    }
 
     let bbox = turf.bbox(districtPolygon);
 
